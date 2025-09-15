@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>headonist</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --veil: 0.6;                /* background alpha */
+      --card-max: 920px;
+      --border: rgba(255,255,255,.12);
+      --btn: #514d3f;
+      --btnh: #433f34;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+
+    body{
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:#000; color:#fff; line-height:1.5;
+    }
+
+    .hero{
+      position:relative; min-height:100vh; display:grid; place-items:center;
+      padding:64px 16px; overflow:hidden; text-align:center;
+    }
+    /* Background image: zoom 200% and alpha 0.6 */
+    .hero::before{
+      content:''; position:absolute; inset:0;
+      background-image: url('BACKGROUND_IMAGE_URL'); /* replace with your public image URL */
+      background-repeat:no-repeat;
+      background-position:center;
+      background-size:200% 200%;
+      opacity: var(--veil);
+      filter: contrast(1.05) brightness(.9);
+      z-index:0;
+    }
+
+    .card{
+      position:relative; z-index:1; width:100%; max-width: var(--card-max);
+      margin:0 auto;
+      background: rgba(0,0,0,.55);
+      border: 1px solid var(--border);
+      padding: 36px 22px 28px;
+      text-align:center;
+    }
+
+    .logo{
+      font-family:'Reenie Beanie', cursive;
+      font-size: clamp(34px, 4.5vw, 56px);
+      line-height:1;
+      margin-bottom:8px;
+      user-select:none;
+    }
+
+    .headline{
+      font-family: 'Jost', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing: .6em;
+      text-transform: uppercase;
+      font-size: clamp(32px, 8vw, 96px);
+      line-height: 1.05;
+      margin: 10px 0 22px;
+      white-space: pre-wrap;
+    }
+
+    .sub, .desc{
+      max-width: 820px; margin: 0 auto 22px; font-size: 18px;
+    }
+
+    @media (max-width:560px){
+      .headline{ letter-spacing: .42em; }
+      .card{ padding: 28px 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <section class="card">
+      <div class="logo">headonist</div>
+      <div class="headline">MEET&nbsp;YOUR&nbsp;MAKER</div>
+
+      <p class="sub">
+        Headonist works as your operating system for decisions — built to help you understand yourself and move forward with confidence.
+      </p>
+
+      <p class="desc">
+        Through onboarding questions, Headonist builds a profile of how you think and move. From there we help you name what you want, then deliver sharp insights that build your confidence and guide you through change. Because second-guessing is boring — and your time’s worth more than doubt.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
