@@ -3,90 +3,95 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>headonist</title>
+  <title>Headonist</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet"/>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@700;800;900&family=Poppins:wght@300;400;500;600&family=Reenie+Beanie&display=swap" rel="stylesheet"/>
 
   <style>
     :root{
-      --veil: 0.6;                /* background alpha */
-      --card-max: 920px;
-      --border: rgba(255,255,255,.12);
-      --btn: #514d3f;
-      --btnh: #433f34;
+      --paper-alpha: 0.6;          /* background alpha */
+      --ink: #1e1e24;              /* card text colour */
+      --card-max: 1100px;
+      --card-border: #e7e7e7;
     }
-
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
-
     body{
-      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       background:#000; color:#fff; line-height:1.5;
+    }
+
+    .brand-top{
+      position:fixed; top:14px; left:50%; transform:translateX(-50%);
+      z-index:5; pointer-events:none;
+      font-family:'Reenie Beanie',cursive;
+      font-size:28px; color:#fff; opacity:.95;
     }
 
     .hero{
       position:relative; min-height:100vh; display:grid; place-items:center;
-      padding:64px 16px; overflow:hidden; text-align:center;
+      padding:96px 16px 64px; overflow:hidden; text-align:center;
     }
-    /* Background image: zoom 200% and alpha 0.6 */
+    /* background paper: 200% zoom + alpha 0.6 */
     .hero::before{
-      content:''; position:absolute; inset:0;
-      background-image: url('https://github.com/theheadonist/landing/blob/main/bkg.jpg'); 
-      background-repeat:no-repeat;
-      background-position:center;
+      content:''; position:absolute; inset:0; z-index:0;
+      background-image:url('https://github.com/theheadonist/landing/blob/main/bkg.jpg');
       background-size:200% 200%;
-      opacity: var(--veil);
-      filter: contrast(1.05) brightness(.9);
-      z-index:0;
+      background-position:center;
+      background-repeat:no-repeat;
+      opacity:var(--paper-alpha);
+      filter:contrast(1.05) brightness(.95);
     }
 
+    /* Wrapper */
     .card{
-      position:relative; z-index:1; width:100%; max-width: var(--card-max);
-      margin:0 auto;
-      background: rgba(0,0,0,.55);
-      border: 1px solid var(--border);
-      padding: 36px 22px 28px;
+      position:relative; z-index:1; width:100%; max-width:var(--card-max);
+      margin:0 auto; background:#fff; color:var(--ink);
+      border:1px solid var(--card-border);
+      padding:36px 28px 30px; /* square edges */
       text-align:center;
     }
 
-    .logo{
-      font-family:'Reenie Beanie', cursive;
-      font-size: clamp(34px, 4.5vw, 56px);
-      line-height:1;
-      margin-bottom:8px;
-      user-select:none;
-    }
-
+    /* Headline, wide tracking */
     .headline{
-      font-family: 'Jost', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      font-weight: 900;
-      letter-spacing: .6em;
-      text-transform: uppercase;
-      font-size: clamp(32px, 8vw, 96px);
-      line-height: 1.05;
-      margin: 10px 0 22px;
-      white-space: pre-wrap;
+      font-family:'Jost',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-weight:900; text-transform:uppercase; line-height:1.02;
+      letter-spacing:.6em;
+      margin:8px 0 8px;
+      color:var(--ink);
     }
+    .headline .line{
+      font-size:clamp(34px,8vw,110px);
+      white-space:nowrap;
+    }
+    .headline .line + .line{ margin-top:10px; }
 
     .sub, .desc{
-      max-width: 820px; margin: 0 auto 22px; font-size: 18px;
+      max-width:880px; margin:16px auto 0; font-size:18px;
     }
 
-    @media (max-width:560px){
-      .headline{ letter-spacing: .42em; }
-      .card{ padding: 28px 16px 24px; }
+    @media (max-width:700px){
+      .headline{ letter-spacing:.42em; }
+      .headline .line{ font-size:clamp(28px,10vw,72px); }
+      .card{ padding:28px 18px 22px; }
     }
   </style>
 </head>
 <body>
+  <!-- Top logo -->
+  <div class="brand-top">headonist</div>
+
   <main class="hero">
-    <section class="card">
-      <div class="logo">headonist</div>
-      <div class="headline">MEET&nbsp;YOUR&nbsp;MAKER</div>
+    <section class="card" aria-label="Headonist landing">
+      <!-- Headline split across rows -->
+      <div class="headline">
+        <div class="line">MEET&nbsp;YOUR</div>
+        <div class="line">MAKER</div>
+      </div>
 
       <p class="sub">
-        Headonist works as your operating system for decisions — built to help you understand yourself and move forward with confidence.
+        Headonist works as your operating system for decisions. Built to help you understand yourself and move forward with confidence.
       </p>
 
       <p class="desc">
