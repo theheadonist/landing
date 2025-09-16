@@ -6,12 +6,12 @@
   <title>Headonist</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@700;800;900&family=Poppins:wght@300;400;500;600&family=Reenie+Beanie&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@700;800;900&family=Poppins:wght@300;400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet"/>
 
   <style>
     :root{
-      --paper-alpha: 0.6;          /* background overlay alpha */
-      --ink: #1e1e24;              /* card text colour */
+      --paper-alpha: 0.6;          /* (unused now, kept if you want to re-enable overlay) */
+      --ink: #1e1e24;              /* text colour */
       --card-max: 1100px;
       --card-border: #e7e7e7;
     }
@@ -35,43 +35,40 @@
       padding:96px 16px 64px; /* leave space for fixed topbar */
       overflow:hidden; text-align:center;
     }
-    /* Background: 200% zoom with 0.6 overlay */
+    /* Background: 200% zoom, no whitewash */
     .hero::before{
       content:''; position:absolute; inset:0; z-index:0;
-      background:
-        /*linear-gradient(rgba(255,255,255,var(--paper-alpha)), rgba(255,255,255,var(--paper-alpha))),'*/
-        url('https://raw.githubusercontent.com/theheadonist/landing/main/bkg.jpg') center / 200% 200% no-repeat;
-      filter:contrast(1.02) brightness(.98);
+      background: url('https://raw.githubusercontent.com/theheadonist/landing/main/bkg.jpg') center / 200% 200% no-repeat;
+      filter: contrast(1.02) brightness(.98);
     }
 
-    /* Wrapper */
+    /* Wrapper around headline + text (no white box here) */
     .card{
       position:relative; z-index:1; width:100%; max-width:var(--card-max);
-      margin:0 auto; /*background:#fff; color:var(--ink);
-      border:1px solid var(--card-border);*/
-      padding:36px 28px 30px;
-      text-align:center;
-      color: #1e1e24;
+      margin:0 auto; padding:36px 28px 30px; text-align:center;
+      color: var(--ink);
     }
 
     /* Headline */
     .headline{
       font-family:'Jost',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       font-weight:200; text-transform:uppercase; line-height:1.02;
-      letter-spacing:.8em; margin:12px 0 12px; color:var(--ink);
+      letter-spacing:.8em; margin:12px 0 24px; color:var(--ink);
     }
     .headline .line{ font-size:clamp(34px,8vw,110px); white-space:nowrap; }
     .headline .line + .line{ margin-top:12px; }
 
-    .sub, .desc{
-      max-width:880px; margin:16px auto 0; font-size:18px;
+    /* Card only around descriptive text */
+    .text-card{
+      position:relative; z-index:1;
+      background: rgba(255,255,255,0.7);   /* alpha 0.7 */
+      color: var(--ink);
+      padding: 28px 22px;
+      max-width: 880px; margin: 0 auto;
+      border: 0; /* square edges (no radius) */
     }
 
-    @media (max-width:700px){
-      .headline{ letter-spacing:.42em; }
-      .headline .line{ font-size:clamp(28px,10vw,72px); }
-      .card{ padding:28px 18px 22px; }
-    }
+    .sub, .desc{margin:12px 0; font-size:16px}
   </style>
 </head>
 <body>
@@ -84,16 +81,20 @@
         <div class="line">MAKER</div>
       </div>
 
-      <p class="sub">
-        Headonist works as your operating system for decisions. Built to help you understand yourself and move forward with confidence.
-      </p>
+      <!-- only the text sits inside the semi-transparent white card -->
+      <section class="text-card">
+        <p class="sub">
+          Headonist works as your operating system for decisions. Built to help you understand yourself and move forward with confidence.
+        </p>
 
-      <p class="desc">
-        Through onboarding questions, Headonist builds a profile of how you think and move. From there we help you name what you want, then deliver sharp insights that build your confidence and guide you through change.
-      </p>
-      <p class="desc">
-        <strong>Because second-guessing is boring — and your time’s worth more than doubt.</strong>
-      </p>
+        <p class="desc">
+          Through onboarding questions, Headonist builds a profile of how you think and move. From there we help you name what you want, then deliver sharp insights that build your confidence and guide you through change.
+        </p>
+
+        <p class="desc">
+          <strong>Because second-guessing is boring — and your time’s worth more than doubt.</strong>
+        </p>
+      </section>
     </section>
   </main>
 </body>
